@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+<title>HTTP Test Website</title>
+	<link rel="icon" type="image/png" href="i7logo.png"/>
+</head>
+
+<body>
+	<table style = "width: 100%">
+		<tr>
+			<td><img src="faulogo.png" height=30px></td>
+			<td style = "text-align: right"><img src="i7logo.png" height=35px></td>
+		</tr>
+	</table>
+	
+	<p>
+	Below are 20 images.<br>
+	Each image has a size of ~500 kbyte.<br>
+
+	<p>
+	<img src="pic01.png" width=30px>&nbsp;
+	<img src="pic02.png" width=30px>&nbsp;
+	<img src="pic03.png" width=30px>&nbsp;
+	<img src="pic04.png" width=30px>&nbsp;
+	<img src="pic05.png" width=30px><br>
+	<img src="pic06.png" width=30px>&nbsp;
+	<img src="pic07.png" width=30px>&nbsp;
+	<img src="pic08.png" width=30px>&nbsp;
+	<img src="pic09.png" width=30px>&nbsp;
+	<img src="pic10.png" width=30px><br>
+	<img src="pic11.png" width=30px>&nbsp;
+	<img src="pic12.png" width=30px>&nbsp;
+	<img src="pic13.png" width=30px>&nbsp;
+	<img src="pic14.png" width=30px>&nbsp;
+	<img src="pic15.png" width=30px><br>
+	<img src="pic16.png" width=30px>&nbsp;
+	<img src="pic17.png" width=30px>&nbsp;
+	<img src="pic18.png" width=30px>&nbsp;
+	<img src="pic19.png" width=30px>&nbsp;
+	<img src="pic20.png" width=30px>&nbsp;
+
+	<p>
+	<p id="domTime">DOM Content Loaded: </p>
+ 	<p id="domComplete">DOM Complete: </p>
+ 	<p id="protocol">Protocol: </p>
+
+	<script>
+    		window.addEventListener('load', () => {
+		const [navTiming] = performance.getEntriesByType('navigation');
+
+		const domLoadTime = Math.round(navTiming.domContentLoadedEventStart - navTiming.startTime);
+		const domCompleteTime = Math.round(navTiming.domComplete - navTiming.startTime);
+		const protocol = navTiming.nextHopProtocol;
+
+		document.getElementById('domTime').textContent = `DOM Content Loaded: ${domLoadTime} ms`;
+		document.getElementById('domComplete').textContent = `DOM Complete: ${domCompleteTime} ms`;
+		document.getElementById('protocol').textContent = `Protocol: ${protocol}`;
+	});
+	</script>
+</body>
+
+</html>
+
+
+
+<!-- google-chrome --incognito --disable-quic --disable-http2 --disable-quic about:blank -->
+<!-- google-chrome --incognito --disable-quic about:blank -->
+<!-- google-chrome --incognito --enable-quic --origin-to-force-quic-on=your-server.de:443 about:blank -->
+

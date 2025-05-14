@@ -36,6 +36,8 @@ It is sufficient to change the Default Listener:
  - General: `ANY IPv4`, `Port 443`, `Secure Yes`
  - SSL: Path to private key and certificate, `Chained Certificate Yes` for Let's Encrypt certificates
 
+Copy the `html` files from this repository to the OpenLiteSpeed webserver (e.g., `/usr/local/lsws/Example/html`).
+
 
 ## Test with your Browser
 For example with Google Chrome:
@@ -47,14 +49,14 @@ For example with Google Chrome:
 - HTTP/3\
   `google-chrome --incognito --enable-quic --origin-to-force-quic-on=quicsat.de:443 about:blank`
 
-Right-click in window, select `Inspect` or press `F12`, select `Network` tab.
+Right-click in window and select `Inspect` (or press `F12`), then select `Network` tab.
 
 Load your website!
 
 
 ## Optional: Add NetEm delay for *geostationary satellite* latency
 In the lecture notes, an additional delay of 600ms has been added to mimic the latency of a geostationary satellite path.\
-`sudo tc qdisc add dev eth0 root handle 1:0 netem delay 600ms` (replace `eth0` with your interface)\
+`sudo tc qdisc add dev eth0 root handle 1:0 netem delay 600ms` (replace `eth0` with the interface of your webserver)\
 This will add 600ms to the outgoing Ethernet interface of the webserver.
 
 - [ ] TODO: Make this apply to UDP port 443 only
